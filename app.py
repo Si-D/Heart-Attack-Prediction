@@ -48,9 +48,12 @@ def main():
     result = ""
     if st.button("Predict"):
         result = heart_attack_prediction(sex, exng, caa, cp, trtbps, chol, fbs, restecg, thalachh, oldpeak, slp, thall)
-        st.success('The output is {}'.format(result))
+        if result == 0:
+            st.success('The person does not get a Heart Attack! Yay!')
+        else:
+            st.write("Oops!This person will get a Heart Attack! Die soon haha!")
     if st.button("About"):
-        st.text("Lets Laarn")
+        st.text("Lets Learn")
         st.text("Built with Streamlit")   
         
         
