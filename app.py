@@ -15,10 +15,10 @@ from PIL import Image
 pickle_in = open("SVM_model.pkl","rb")
 classifier=pickle.load(pickle_in)
 
-def heart_attack_prediction(sex,exng,caa,cp,trtbps,chol,fbs,restecg,thalachh,oldpeak,slp,thall):
+def heart_attack_prediction(sex,cp,trtbps,chol,fbs,restecg,thalachh,exng,oldpeak,slp,caa,thall):
     
     
-    prediction = classifier.predict([[sex,exng,caa,cp,trtbps,chol,fbs,restecg,thalachh,oldpeak,slp,thall]])
+    prediction = classifier.predict([[sex,cp,trtbps,chol,fbs,restecg,thalachh,exng,oldpeak,slp,caa,thall]])
     print(prediction)
     return prediction
 
@@ -47,11 +47,12 @@ def main():
     thall = st.text_input("Thall","Type Here")
     result = ""
     if st.button("Predict"):
-        result = heart_attack_prediction(sex, exng, caa, cp, trtbps, chol, fbs, restecg, thalachh, oldpeak, slp, thall)
-        if result == 0:
-            st.success('The person does not get a Heart Attack! Yay!')
-        else:
-            st.write("Oops!This person will get a Heart Attack! Die soon haha!")
+        result = heart_attack_prediction(sex,cp,trtbps,chol,fbs,restecg,thalachh,exng,oldpeak,slp,caa,thall)
+        st.success('The output is {}'.format(result))
+        #if result == 0:
+            #st.success('The person does not get a Heart Attack! Yay!')
+        #else:
+            #st.write("Oops!This person will get a Heart Attack! Die soon haha!")
     if st.button("About"):
         st.text("Lets Learn")
         st.text("Built with Streamlit")   
