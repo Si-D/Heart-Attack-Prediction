@@ -10,9 +10,8 @@ import pickle
 import pandas as pd
 import streamlit as st 
 
-from PIL import Image
 
-pickle_in = open("SVM_model.pkl","rb")
+pickle_in = open("SVM_model_main.pkl","rb")
 classifier=pickle.load(pickle_in)
 
 def heart_attack_prediction(sex,cp,trtbps,chol,fbs,restecg,thalachh,exng,oldpeak,slp,caa,thall):
@@ -42,9 +41,9 @@ def main():
     fbs = st.text_input("Fasting Blood Sugar(If > 120 then 1 else 0)","Type Here")
     restecg = st.text_input("Resting ECG results(0,1 or 2)","Type Here")
     thalachh = st.text_input("Maximum heart rate achieved","Type Here")
-    oldpeak = st.text_input("OldPeak","Type Here")
-    slp = st.text_input("SLP","Type Here")
-    thall = st.text_input("Thall","Type Here")
+    oldpeak = st.text_input("ST depression induced by exercise relative to rest","Type Here")
+    slp = st.text_input("Slope of the peak exercise ST segment (0=upsloping; 1=flat; 2=downsloping)","Type Here")
+    thall = st.text_input("Thalassemia","Type Here")
     result = ""
     if st.button("Predict"):
         result = heart_attack_prediction(sex,cp,trtbps,chol,fbs,restecg,thalachh,exng,oldpeak,slp,caa,thall)
